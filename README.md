@@ -8,6 +8,10 @@
     <source src="demo/demo.mov" type="video/mov">
 </video>
 
+> Click on the image to see the video
+
+[![Demo Video](https://img.youtube.com/vi/vhRQ31gmYbU/0.jpg)](https://youtu.be/vhRQ31gmYbU)
+
 <!-- Project bref -->
 A Paging CollectionView built by adding collection views to paging collection view allowing the user to switch between any kind of collection view with an easy tap or swipe gesture similar to Twitter and Instagram use.
 
@@ -17,15 +21,15 @@ UIPagingCollectionView uses compositional layout, the buttons in the top with li
 
 <!-- ---------------------------------------------------------------------------- -->
 ## Table of Contents
- - [Features In](#features-in)
+ - [Featured In](#featured-in)
  - [Requirements](#requirements)
  - [Installation](#installation)
- - [How to use UIPagingCollectionView](#how-to-user-uipagingcollectionview)
+ - [How to use UIPagingCollectionView](#how-to-use-uipagingcollectionview)
 
 
 
 <!-- ---------------------------------------------------------------------------- -->
-## Features In
+## Featured In
 - [See](https://github.com/Mohamed-Khaterr/See)
 
 
@@ -45,7 +49,7 @@ Add `UIPagingCollectionView.swift` and `UIPagingHeaderCollectionReusableView` to
 
 ## How to use UIPagingCollectionView
 
-**You can user UIPagingCollectionView with Storyboard or Programmaticly**
+**You can use UIPagingCollectionView with Storyboard or Programmaticly**
 
 ### Using Storyboard
 1. Add UICollectionView to ViewController
@@ -63,28 +67,24 @@ IBOutlet var pagingCollectionView: UIPagingCollectionView!
 let pagingCollectionView = UIPaingCollectionView()
 ```
 
-
+Then:
 
 ```swift
 // Set Delegate to get current display collection view
 pagingCollectionView.pagingDelegate = self
-
 
 // Set DataSource to tell uipaging collection view how many collection view you want to display
 pagingCollectionView.pagingDataSource = self
 ```
 
 
-And this is the `DataSource` functions:
+The `DataSource` functions:
 
 ```swift
-UIPagingCollectionViewDataSource:
-
 // In titleForHeaderButtons you will need to set a titles for each button in header of uipagingCollectionview in sequence
 func pagingCollectionView(titleForHeaderButtons pagingCollectionView: UIPagingCollectionView) -> [String] {
     return ["First", "Second", "Third"]
 }
-
 
 // In subCollectionViewsIn you will need to set collectionViews for pages you want in sequence with header titles
 func pagingCollectionView(subCollectionViews pagingCollectionView: UIPagingCollectionView) -> [UICollectionView] {
@@ -93,12 +93,11 @@ func pagingCollectionView(subCollectionViews pagingCollectionView: UIPagingColle
 ```
 
 
-And this is the `Delegate` function:
+The `Delegate` functions:
 
 ```swift
-UIPagingCollectionViewDelegate:
-
-// This function will call when user scroll horizontaly to different collectionview or when user pressed on the header buttons
+// This function will call when user scroll horizontaly to different 
+// collectionview or when user pressed on the header buttons
 func pagingCollectionView(didScrollToCollectionViewAt index: Int) {
     print("Selected UICollectionView Index:", index)
 }
