@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - UIPagingHeaderCollectionReusableView Delegate
 protocol UIPagingHeaderCollectionReusableViewDelegate: AnyObject {
-    func pagingHeaderCollectionReusableViewDelegate(didPressedButtonAt index: Int)
+    func pagingHeaderCollectionReusableView(didPressedButtonAt index: Int)
 }
 
 
@@ -147,7 +147,7 @@ final class UIPagingHeaderCollectionReusableView: UICollectionReusableView {
         // Find index for pressed button
         if let buttonTitle = sender.titleLabel?.text, let index = buttonsTitle.firstIndex(of: buttonTitle) {
             DispatchQueue.main.async { [weak self] in
-                self?.delegate?.pagingHeaderCollectionReusableViewDelegate(didPressedButtonAt: index)
+                self?.delegate?.pagingHeaderCollectionReusableView(didPressedButtonAt: index)
             }
         }
     }

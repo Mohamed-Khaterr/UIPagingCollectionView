@@ -10,7 +10,13 @@ import OSLog
 
 // MARK: - UIPagingCollectionView DataSource
 protocol UIPagingCollectionViewDataSource: AnyObject {
+    
+    /// Ask your datasource object for the titles in the header
+    /// - Returns: Array of titles string
     func pagingCollectionView(titleForHeaderButtons pagingCollectionView: UIPagingCollectionView) -> [String]
+    
+    /// Ask your datasource object for the UICollectionViews to imbed in the pagingCollectionView
+    /// - Returns: UICollectionViews
     func pagingCollectionView(subCollectionViews pagingCollectionView: UIPagingCollectionView) -> [UICollectionView]
 }
 
@@ -18,6 +24,8 @@ protocol UIPagingCollectionViewDataSource: AnyObject {
 
 // MARK: - UIPagingCollectionView Delegate
 protocol UIPagingCollectionViewDelegate: AnyObject {
+    
+    /// Tell the delegate that user scroll to index in array of UICollectionViews
     func pagingCollectionView(didScrollToCollectionViewAt index: Int)
 }
 
@@ -202,7 +210,7 @@ extension UIPagingCollectionView: UICollectionViewDataSource {
 
 // MARK: - Section Header Delegate
 extension UIPagingCollectionView: UIPagingHeaderCollectionReusableViewDelegate {
-    func pagingHeaderCollectionReusableViewDelegate(didPressedButtonAt index: Int) {
+    func pagingHeaderCollectionReusableView(didPressedButtonAt index: Int) {
         guard
             let subCollectionViews = pagingDataSource?.pagingCollectionView(subCollectionViews: self),
             subCollectionViews.count > index
