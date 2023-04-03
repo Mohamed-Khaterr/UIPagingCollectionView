@@ -40,6 +40,13 @@ final class UIPagingHeaderCollectionReusableView: UICollectionReusableView {
         return stackView
     }()
     
+    private let backgroundLineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemGray4
+        return view
+    }()
+    
     private let lineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +62,7 @@ final class UIPagingHeaderCollectionReusableView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemBackground
-        [buttonsStackView, lineView].forEach({ addSubview($0) })
+        [buttonsStackView, backgroundLineView, lineView].forEach({ addSubview($0) })
 
     }
     
@@ -80,6 +87,7 @@ final class UIPagingHeaderCollectionReusableView: UICollectionReusableView {
         // Add Buttons as arranged subViews to buttonsStackView
         for title in buttonsTitle {
             let button = UIButton()
+            button.backgroundColor = .systemBackground
             button.setTitle(title, for: .normal)
             button.setTitleColor(.label, for: .normal)
             button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
@@ -93,15 +101,23 @@ final class UIPagingHeaderCollectionReusableView: UICollectionReusableView {
             buttonsStackView.topAnchor.constraint(equalTo: self.topAnchor),
             buttonsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             buttonsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            buttonsStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.9)
+            buttonsStackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.88)
+        ])
+        
+        // Background Line View Constraints
+        NSLayoutConstraint.activate([
+            backgroundLineView.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor),
+            backgroundLineView.leadingAnchor.constraint(equalTo: buttonsStackView.leadingAnchor),
+            backgroundLineView.trailingAnchor.constraint(equalTo: buttonsStackView.trailingAnchor),
+            backgroundLineView.heightAnchor.constraint(equalToConstant: 2.5)
         ])
         
         
         // Line View Constraints
         NSLayoutConstraint.activate([
             lineView.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor),
-            lineView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            lineView.heightAnchor.constraint(equalToConstant: 2),
+            lineView.leadingAnchor.constraint(equalTo: buttonsStackView.leadingAnchor),
+            lineView.heightAnchor.constraint(equalToConstant: 2.5),
             lineView.widthAnchor.constraint(equalTo: buttonsStackView.widthAnchor, multiplier: CGFloat(1) / CGFloat(buttonsTitle.count))
         ])
     }
